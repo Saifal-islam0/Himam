@@ -69,7 +69,6 @@ p{ margin:0 0 1em; }
 .container{
   max-width:var(--container);
   margin-inline:auto;
-  padding-inline:28px;
 }
 
 @media (prefers-reduced-motion: reduce){
