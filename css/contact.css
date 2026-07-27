@@ -69,6 +69,7 @@ p{ margin:0 0 1em; }
 .container{
   max-width:var(--container);
   margin-inline:auto;
+  padding-inline:28px;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -137,7 +138,9 @@ p{ margin:0 0 1em; }
 [data-theme="dark"] .site-header::before{ background:rgba(20,16,31,.86); }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
-  padding-block:14px;
+  padding-block:14px;  padding-inline:0px !important;
+
+
 }
 .nav-logo{ display:flex; align-items:center; gap:12px; }
 .nav-logo img{ height:34px; width:auto; }
