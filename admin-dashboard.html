@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم المدير الأعلى | همم الحياة</title>
+<meta name="description" content="لوحة تحكم المدير الأعلى في همم الحياة: إدارة المستخدمين والصلاحيات والإعدادات والسجلات الأمنية والتكاملات.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin-dashboard.css">
+<script>(function(){try{var t=localStorage.getItem("himam-theme");if(t==="dark"){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>
+</head>
+<body>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="dash-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-brand">
+      <img src="assets/logo-stacked.png" alt="همم الحياة">
+      <div class="dash-brand-text">لوحة التحكم<span>همم الحياة</span></div>
+    </div>
+
+    <div class="dash-role-card">
+      <div class="dash-role-avatar">RS</div>
+      <div>
+        <div class="name">ريم الشهراني</div>
+        <div class="role">المدير الأعلى · Super Admin</div>
+      </div>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">عام</div>
+        <button class="dash-nav-item active" data-section="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+          نظرة عامة
+        </button>
+      </div>
+
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">المحتوى</div>
+        <button class="dash-nav-item" data-section="pages">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
+          صفحات الموقع
+          <span class="count">5</span>
+        </button>
+      </div>
+
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">الإدارة</div>
+        <button class="dash-nav-item" data-section="users">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          إدارة المستخدمين
+          <span class="count">12</span>
+        </button>
+        <button class="dash-nav-item" data-section="permissions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+          إدارة الصلاحيات
+        </button>
+        <button class="dash-nav-item" data-section="admins">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/><path d="M12 1v2M12 1l2 1.2M12 1l-2 1.2"/></svg>
+          إنشاء وحذف المديرين
+        </button>
+      </div>
+
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">النظام</div>
+        <button class="dash-nav-item" data-section="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 0 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1z"/></svg>
+          الإعدادات العامة
+        </button>
+        <button class="dash-nav-item" data-section="security">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
+          السجلات الأمنية
+        </button>
+        <button class="dash-nav-item" data-section="integrations">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><circle cx="12" cy="12" r="3"/></svg>
+          إدارة التكاملات
+        </button>
+      </div>
+    </nav>
+
+    <div class="dash-sidebar-foot">
+      <div class="lang-switch" role="group" aria-label="اللغة">
+        <button type="button" class="lang-btn active" data-lang="ar">AR</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="admin-login.html" class="dash-logout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+        تسجيل الخروج
+      </a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="القائمة">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h1 id="topbarTitle">نظرة عامة</h1>
+          <div class="dash-topbar-sub" id="topbarSub">ملخص أداء الموقع اليوم</div>
+        </div>
+      </div>
+      <div class="dash-topbar-actions">
+        <div class="dash-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" placeholder="بحث سريع...">
+        </div>
+        <button type="button" class="icon-btn-dash" aria-label="الإشعارات">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span class="dot"></span>
+        </button>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="dash-content">
+
+      <!-- ============================================================ OVERVIEW ============================================================ -->
+      <section class="dash-section active" id="sec-overview">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+              <span class="kpi-trend up">+3 هذا الشهر</span>
+            </div>
+            <div class="kpi-chart-row">
+              <div class="donut" style="background:conic-gradient(var(--purple) 0% 8.3%, var(--turquoise) 8.3% 25%, var(--gold) 25% 66.7%, var(--charcoal) 66.7% 100%);">
+                <span class="donut-label">12</span>
+              </div>
+              <div class="kpi-legend">
+                <span><i style="background:var(--purple);"></i>مدير أعلى 1</span>
+                <span><i style="background:var(--turquoise);"></i>مدير موقع 2</span>
+                <span><i style="background:var(--gold);"></i>محرر محتوى 5</span>
+                <span><i style="background:var(--charcoal);"></i>خدمة عملاء 4</span>
+              </div>
+            </div>
+            <div class="kpi-label">مستخدمو لوحة التحكم حسب الدور</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+              <span class="kpi-trend warn">7 قيد المراجعة</span>
+            </div>
+            <div class="mini-bars" aria-label="طلبات التواصل خلال آخر 7 أيام">
+              <div class="bar"><i style="height:40%; background:var(--purple);"></i></div>
+              <div class="bar"><i style="height:60%; background:var(--purple);"></i></div>
+              <div class="bar"><i style="height:80%; background:var(--purple);"></i></div>
+              <div class="bar"><i style="height:60%; background:var(--purple);"></i></div>
+              <div class="bar"><i style="height:100%; background:var(--purple);"></i></div>
+              <div class="bar"><i style="height:80%; background:var(--purple);"></i></div>
+              <div class="bar hl"><i style="height:60%;"></i></div>
+            </div>
+            <div class="kpi-label">طلبات تواصل هذا الأسبوع — إجمالي 24</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg></div>
+              <span class="kpi-trend up">سليم</span>
+            </div>
+            <div class="kpi-chart-row">
+              <div class="donut" style="background:conic-gradient(var(--turquoise) 0% 100%);">
+                <span class="donut-label" style="color:var(--turquoise-600);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:20px; height:20px;"><path d="M4 12l5 5L20 6"/></svg>
+                </span>
+              </div>
+              <div class="kpi-legend"><span><i style="background:var(--turquoise);"></i>0 تنبيهات نشطة خلال آخر 30 يومًا</span></div>
+            </div>
+            <div class="kpi-label">تنبيهات أمنية نشطة</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><circle cx="12" cy="12" r="3"/></svg></div>
+              <span class="kpi-trend up">4 متصلة</span>
+            </div>
+            <div class="kpi-chart-row">
+              <div class="donut" style="background:conic-gradient(var(--purple) 0% 80%, var(--mist-2) 80% 100%);">
+                <span class="donut-label">4/5</span>
+              </div>
+              <div class="kpi-legend">
+                <span><i style="background:var(--purple);"></i>متصلة</span>
+                <span><i style="background:var(--mist-2); border:1px solid var(--line);"></i>بانتظار الربط</span>
+              </div>
+            </div>
+            <div class="kpi-label">التكاملات النشطة</div>
+          </div>
+        </div>
+
+        <div class="chart-panel-grid">
+          <div class="dash-panel" style="margin-bottom:0;">
+            <div class="dash-panel-head"><div><h2>الزيارات خلال آخر 7 أيام</h2><p>عدد زيارات الموقع يوميًا</p></div></div>
+            <div class="line-chart-wrap">
+              <svg viewBox="0 0 560 160" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="visitsFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--turquoise)" stop-opacity=".35"/>
+                    <stop offset="100%" stop-color="var(--turquoise)" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,120 93,95 187,135 280,70 373,100 467,45 560,30 560,160 0,160 Z" fill="url(#visitsFill)"/>
+                <polyline points="0,120 93,95 187,135 280,70 373,100 467,45 560,30" fill="none" stroke="var(--turquoise)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="0" cy="120" r="4" fill="var(--turquoise)"/>
+                <circle cx="93" cy="95" r="4" fill="var(--turquoise)"/>
+                <circle cx="187" cy="135" r="4" fill="var(--turquoise)"/>
+                <circle cx="280" cy="70" r="4" fill="var(--turquoise)"/>
+                <circle cx="373" cy="100" r="4" fill="var(--turquoise)"/>
+                <circle cx="467" cy="45" r="4" fill="var(--turquoise)"/>
+                <circle cx="560" cy="30" r="5" fill="var(--purple-ink)"/>
+              </svg>
+            </div>
+            <div class="chart-axis-labels">
+              <span>السبت</span><span>الأحد</span><span>الاثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span><span>الجمعة</span>
+            </div>
+          </div>
+
+          <div class="dash-panel" style="margin-bottom:0;">
+            <div class="dash-panel-head"><div><h2>نماذج التواصل حسب الحالة</h2></div></div>
+            <div class="status-bars">
+              <div class="status-bar-row">
+                <div class="row-top"><span>جديد</span><b>9</b></div>
+                <div class="status-bar-track"><div class="status-bar-fill" style="width:37%; background:var(--purple);"></div></div>
+              </div>
+              <div class="status-bar-row">
+                <div class="row-top"><span>قيد المراجعة</span><b>7</b></div>
+                <div class="status-bar-track"><div class="status-bar-fill" style="width:29%; background:var(--gold);"></div></div>
+              </div>
+              <div class="status-bar-row">
+                <div class="row-top"><span>تم الرد</span><b>8</b></div>
+                <div class="status-bar-track"><div class="status-bar-fill" style="width:33%; background:var(--turquoise);"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div class="dash-panel">
+            <div class="dash-panel-head">
+              <div><h2>آخر النشاطات</h2><p>أحدث التحديثات على الموقع ولوحة التحكم</p></div>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <span class="activity-dot" style="background:var(--purple);"></span>
+                <div><p><strong>سارة القحطاني</strong> نشرت خبرًا جديدًا في «أخبار وفعاليات»</p><div class="t">قبل 20 دقيقة</div></div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot" style="background:var(--turquoise);"></span>
+                <div><p><strong>مدير الموقع</strong> راجع 3 نماذج تواصل جديدة</p><div class="t">قبل ساعتين</div></div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot" style="background:var(--gold);"></span>
+                <div><p>محرر محتوى رفع مسودة «صناعة الفعاليات والمناسبات» بانتظار الاعتماد</p><div class="t">أمس، 4:12 م</div></div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot" style="background:var(--charcoal);"></span>
+                <div><p>تسجيل دخول جديد لحساب <strong>خدمة العملاء</strong> من جهاز غير معروف</p><div class="t">أمس، 11:03 ص</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-panel">
+            <div class="dash-panel-head"><div><h2>إجراءات سريعة</h2></div></div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <button class="btn btn-outline" style="justify-content:flex-start;" onclick="dashNavigate('admins')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                إنشاء حساب مدير جديد
+              </button>
+              <button class="btn btn-outline" style="justify-content:flex-start;" onclick="dashNavigate('permissions')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+                مراجعة مصفوفة الصلاحيات
+              </button>
+              <button class="btn btn-outline" style="justify-content:flex-start;" onclick="dashNavigate('security')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 12l1.8 1.8L15 10"/><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+                فتح السجلات الأمنية
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ SITE PAGES ============================================================ -->
+      <section class="dash-section" id="sec-pages">
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <div><h2>صفحات الموقع</h2><p>إدارة محتوى وحالة كل صفحة في موقع همم الحياة</p></div>
+            <a href="index.html" target="_blank" class="btn btn-outline btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+              معاينة الموقع
+            </a>
+          </div>
+
+          <div class="page-list">
+
+            <div class="page-row">
+              <div class="page-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg></div>
+              <div class="page-row-info">
+                <h4>الرئيسية</h4>
+                <span class="slug">index.html</span>
+              </div>
+              <div class="page-row-meta">آخر تحديث: سارة القحطاني<br>قبل 3 أيام</div>
+              <span class="status-badge status-active">منشور</span>
+              <div class="page-row-actions">
+                <button type="button" class="btn btn-outline btn-sm page-edit-toggle" data-target="edit-home">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                  تعديل المحتوى
+                </button>
+              </div>
+              <form class="page-editor page-editor-form" id="edit-home">
+                <div class="page-editor-grid">
+                  <div class="field"><label>عنوان الصفحة الرئيسية (Hero)</label><input type="text" value="نصنع تجارب ترفيهية... لأن الحياة حق للجميع"></div>
+                  <div class="field"><label>حالة النشر</label>
+                    <select><option selected>منشور</option><option>مسودة</option></select>
+                  </div>
+                  <div class="field" style="grid-column:1/-1;"><label>نص قسم «ما نقوم به»</label>
+                    <textarea rows="3">تنطلق همم الحياة من همّة تسعى إلى تحويل الأفكار والرسائل والأهداف إلى تجارب حقيقية ذات أثر ملموس.</textarea>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px;">
+                  <button type="submit" class="btn btn-primary btn-sm">حفظ التغييرات</button>
+                  <p class="page-save-note" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13px;">تم حفظ التعديلات بنجاح.</p>
+                </div>
+              </form>
+            </div>
+
+            <div class="page-row">
+              <div class="page-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+              <div class="page-row-info">
+                <h4>من نحن</h4>
+                <span class="slug">about.html</span>
+                <div class="sub-note">يشمل: قصتنا، رؤيتنا، رسالتنا، مهمتنا</div>
+              </div>
+              <div class="page-row-meta">آخر تحديث: فيصل العتيبي<br>قبل أسبوع</div>
+              <span class="status-badge status-active">منشور</span>
+              <div class="page-row-actions">
+                <button type="button" class="btn btn-outline btn-sm page-edit-toggle" data-target="edit-about">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                  تعديل المحتوى
+                </button>
+              </div>
+              <form class="page-editor page-editor-form" id="edit-about">
+                <div class="page-editor-grid">
+                  <div class="field"><label>عنوان الصفحة</label><input type="text" value="من نحن"></div>
+                  <div class="field"><label>حالة النشر</label>
+                    <select><option selected>منشور</option><option>مسودة</option></select>
+                  </div>
+                  <div class="field" style="grid-column:1/-1;"><label>نص «قصتنا»</label>
+                    <textarea rows="3">تنطلق همم الحياة من همّة تسعى إلى تحويل الأفكار والرسائل والأهداف إلى تجارب حقيقية ذات أثر ملموس.</textarea>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px;">
+                  <button type="submit" class="btn btn-primary btn-sm">حفظ التغييرات</button>
+                  <p class="page-save-note" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13px;">تم حفظ التعديلات بنجاح.</p>
+                </div>
+              </form>
+            </div>
+
+            <div class="page-row">
+              <div class="page-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 4v5"/></svg></div>
+              <div class="page-row-info">
+                <h4>خدماتنا</h4>
+                <span class="slug">services.html</span>
+              </div>
+              <div class="page-row-meta">آخر تحديث: فيصل العتيبي<br>قبل أسبوعين</div>
+              <span class="status-badge status-active">منشور</span>
+              <div class="page-row-actions">
+                <button type="button" class="btn btn-outline btn-sm page-edit-toggle" data-target="edit-services">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                  تعديل المحتوى
+                </button>
+              </div>
+              <form class="page-editor page-editor-form" id="edit-services">
+                <div class="page-editor-grid">
+                  <div class="field"><label>عنوان الصفحة</label><input type="text" value="خدماتنا"></div>
+                  <div class="field"><label>حالة النشر</label>
+                    <select><option selected>منشور</option><option>مسودة</option></select>
+                  </div>
+                  <div class="field" style="grid-column:1/-1;"><label>الوصف التعريفي (Meta description)</label>
+                    <textarea rows="3">من صناعة الفعاليات إلى التخطيط الاستراتيجي والتصميم الإبداعي وإدارة المشروعات — خدمات همم الحياة المتكاملة.</textarea>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px;">
+                  <button type="submit" class="btn btn-primary btn-sm">حفظ التغييرات</button>
+                  <p class="page-save-note" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13px;">تم حفظ التعديلات بنجاح.</p>
+                </div>
+              </form>
+            </div>
+
+            <div class="page-row">
+              <div class="page-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div>
+              <div class="page-row-info">
+                <h4>أخبار وفعاليات</h4>
+                <span class="slug">news.html</span>
+                <div class="sub-note">يُدار كل خبر أو فعالية من صفحته الخاصة</div>
+              </div>
+              <div class="page-row-meta">آخر تحديث: سارة القحطاني<br>قبل 20 دقيقة</div>
+              <span class="status-badge status-active">منشور</span>
+              <div class="page-row-actions">
+                <button type="button" class="btn btn-outline btn-sm page-edit-toggle" data-target="edit-news">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                  تعديل المحتوى
+                </button>
+                <button type="button" class="btn btn-primary btn-sm">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                  خبر جديد
+                </button>
+              </div>
+              <form class="page-editor page-editor-form" id="edit-news">
+                <div class="page-editor-grid">
+                  <div class="field"><label>عنوان الصفحة</label><input type="text" value="أخبار وفعاليات"></div>
+                  <div class="field"><label>حالة النشر</label>
+                    <select><option selected>منشور</option><option>مسودة</option></select>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px;">
+                  <button type="submit" class="btn btn-primary btn-sm">حفظ التغييرات</button>
+                  <p class="page-save-note" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13px;">تم حفظ التعديلات بنجاح.</p>
+                </div>
+              </form>
+            </div>
+
+            <div class="page-row">
+              <div class="page-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+              <div class="page-row-info">
+                <h4>تواصل معنا</h4>
+                <span class="slug">contact.html</span>
+              </div>
+              <div class="page-row-meta">آخر تحديث: ريم الشهراني<br>قبل شهر</div>
+              <span class="status-badge status-active">منشور</span>
+              <div class="page-row-actions">
+                <button type="button" class="btn btn-outline btn-sm page-edit-toggle" data-target="edit-contact">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                  تعديل المحتوى
+                </button>
+              </div>
+              <form class="page-editor page-editor-form" id="edit-contact">
+                <div class="page-editor-grid">
+                  <div class="field"><label>عنوان الصفحة</label><input type="text" value="تواصل معنا"></div>
+                  <div class="field"><label>حالة النشر</label>
+                    <select><option selected>منشور</option><option>مسودة</option></select>
+                  </div>
+                  <div class="field" style="grid-column:1/-1;"><label>البريد الإلكتروني المستقبِل للنماذج</label>
+                    <input type="email" value="info@himamalhayah.sa">
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:14px;">
+                  <button type="submit" class="btn btn-primary btn-sm">حفظ التغييرات</button>
+                  <p class="page-save-note" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13px;">تم حفظ التعديلات بنجاح.</p>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ USERS ============================================================ -->
+      <section class="dash-section" id="sec-users">
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <div><h2>مستخدمو لوحة التحكم</h2><p>جميع الحسابات التي تملك وصولاً إلى لوحة تحكم همم الحياة</p></div>
+            <button class="btn btn-primary btn-sm" onclick="dashNavigate('admins')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              إضافة مستخدم
+            </button>
+          </div>
+          <div class="chip-row" style="margin-bottom:18px;">
+            <button class="chip active">الكل (12)</button>
+            <button class="chip">المدير الأعلى (1)</button>
+            <button class="chip">مدير الموقع (2)</button>
+            <button class="chip">محرر المحتوى (5)</button>
+            <button class="chip">خدمة العملاء (4)</button>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>المستخدم</th><th>الدور</th><th>الحالة</th><th>آخر دخول</th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="cell-user"><span class="avatar" style="background:var(--purple);">RS</span><div><div class="name">ريم الشهراني</div><div class="email">reem@himamalhayah.sa</div></div></div></td>
+                  <td><span class="role-badge role-super">المدير الأعلى</span></td>
+                  <td><span class="status-badge status-active">نشط</span></td>
+                  <td>قبل 5 دقائق</td>
+                  <td><div class="row-actions"><button class="icon-action" disabled title="لا يمكن حذف المدير الأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-user"><span class="avatar" style="background:var(--turquoise-600);">فع</span><div><div class="name">فيصل العتيبي</div><div class="email">faisal@himamalhayah.sa</div></div></div></td>
+                  <td><span class="role-badge role-manager">مدير الموقع</span></td>
+                  <td><span class="status-badge status-active">نشط</span></td>
+                  <td>قبل ساعتين</td>
+                  <td><div class="row-actions">
+                    <button class="icon-action" title="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+                    <button class="icon-action danger" title="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-user"><span class="avatar" style="background:var(--gold);">سق</span><div><div class="name">سارة القحطاني</div><div class="email">sarah@himamalhayah.sa</div></div></div></td>
+                  <td><span class="role-badge role-editor">محرر المحتوى</span></td>
+                  <td><span class="status-badge status-active">نشط</span></td>
+                  <td>قبل 20 دقيقة</td>
+                  <td><div class="row-actions">
+                    <button class="icon-action" title="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+                    <button class="icon-action danger" title="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-user"><span class="avatar" style="background:var(--charcoal);">نم</span><div><div class="name">نورة المطيري</div><div class="email">noura@himamalhayah.sa</div></div></div></td>
+                  <td><span class="role-badge role-support">خدمة العملاء</span></td>
+                  <td><span class="status-badge status-pending">بانتظار التفعيل</span></td>
+                  <td>—</td>
+                  <td><div class="row-actions">
+                    <button class="icon-action" title="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+                    <button class="icon-action danger" title="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button>
+                  </div></td>
+                </tr>
+                <tr>
+                  <td><div class="cell-user"><span class="avatar" style="background:var(--charcoal);">خع</span><div><div class="name">خالد العمري</div><div class="email">khalid@himamalhayah.sa</div></div></div></td>
+                  <td><span class="role-badge role-support">خدمة العملاء</span></td>
+                  <td><span class="status-badge status-suspended">موقوف</span></td>
+                  <td>قبل 12 يومًا</td>
+                  <td><div class="row-actions">
+                    <button class="icon-action" title="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+                    <button class="icon-action danger" title="حذف"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button>
+                  </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ PERMISSIONS ============================================================ -->
+      <section class="dash-section" id="sec-permissions">
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <div><h2>مصفوفة الصلاحيات</h2><p>الصلاحيات الممنوحة لكل دور من أدوار العمل في لوحة التحكم</p></div>
+          </div>
+
+          <div class="matrix-legend">
+            <span><span class="legend-dot" style="background:#1DB1A4;"></span> ممنوحة بالكامل</span>
+            <span><span class="legend-dot" style="background:var(--gold);"></span> مشروطة</span>
+            <span><span class="legend-dot" style="background:var(--charcoal);"></span> غير ممنوحة</span>
+          </div>
+
+          <div class="dash-table-wrap">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th class="cap-col">الصلاحية</th>
+                  <th><span class="role-badge role-super">المدير الأعلى</span></th>
+                  <th><span class="role-badge role-manager">مدير الموقع</span></th>
+                  <th><span class="role-badge role-editor">محرر المحتوى</span></th>
+                  <th><span class="role-badge role-support">خدمة العملاء</span></th>
+                </tr>
+              </thead>
+              <tbody id="matrixBody">
+                <!-- rows injected by JS from PERMISSIONS_MATRIX -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="matrix-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+            <span>مدير الموقع لا يستطيع حذف حساب المدير الأعلى أو تغيير ملكية الموقع، بصرف النظر عن أي صلاحيات أخرى ممنوحة له.</span>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div class="t-title">صلاحية نشر المحتوى مباشرةً لمحرر المحتوى</div>
+              <div class="t-desc">افتراضيًا، يحفظ محرر المحتوى مسودة فقط وينتظر اعتماد مدير الموقع أو المدير الأعلى. تفعيل هذا الخيار يسمح له بالنشر مباشرة دون مراجعة.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="publishPermissionToggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ ADMINS (create/delete) ============================================================ -->
+      <section class="dash-section" id="sec-admins">
+        <div class="grid-2col">
+          <div class="dash-panel">
+            <div class="dash-panel-head">
+              <div><h2>حسابات المديرين</h2><p>الحسابات التي تملك صلاحيات إدارية (المدير الأعلى ومديرو الموقع)</p></div>
+            </div>
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead><tr><th>المستخدم</th><th>الدور</th><th>تاريخ الإنشاء</th><th></th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div class="cell-user"><span class="avatar" style="background:var(--purple);">RS</span><div><div class="name">ريم الشهراني</div><div class="email">reem@himamalhayah.sa</div></div></div></td>
+                    <td><span class="role-badge role-super">المدير الأعلى</span></td>
+                    <td>14 يناير 2025</td>
+                    <td><button class="icon-action" disabled title="لا يمكن حذف المدير الأعلى"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="cell-user"><span class="avatar" style="background:var(--turquoise-600);">فع</span><div><div class="name">فيصل العتيبي</div><div class="email">faisal@himamalhayah.sa</div></div></div></td>
+                    <td><span class="role-badge role-manager">مدير الموقع</span></td>
+                    <td>02 مارس 2025</td>
+                    <td><button class="icon-action danger" title="حذف الحساب"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="cell-user"><span class="avatar" style="background:var(--turquoise-600);">لح</span><div><div class="name">لينا الحربي</div><div class="email">lina@himamalhayah.sa</div></div></div></td>
+                    <td><span class="role-badge role-manager">مدير الموقع</span></td>
+                    <td>19 يونيو 2025</td>
+                    <td><button class="icon-action danger" title="حذف الحساب"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/></svg></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="dash-panel">
+            <div class="dash-panel-head"><div><h2>إنشاء حساب مدير</h2><p>يقتصر إنشاء وحذف حسابات المديرين على المدير الأعلى</p></div></div>
+            <form onsubmit="event.preventDefault(); document.getElementById('adminFormNote').style.display='block'; this.reset();" style="display:flex; flex-direction:column; gap:16px;">
+              <div class="field">
+                <label for="adminName">الاسم الكامل</label>
+                <input type="text" id="adminName" placeholder="اسم المدير الجديد" required>
+              </div>
+              <div class="field">
+                <label for="adminEmail">البريد الإلكتروني</label>
+                <input type="email" id="adminEmail" placeholder="name@himamalhayah.sa" required>
+              </div>
+              <div class="field">
+                <label for="adminRole">الدور</label>
+                <select id="adminRole">
+                  <option value="manager">مدير الموقع</option>
+                  <option value="editor">محرر المحتوى</option>
+                  <option value="support">خدمة العملاء</option>
+                </select>
+                <span class="field-hint">لا يمكن إنشاء أكثر من حساب مدير أعلى واحد.</span>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                إنشاء الحساب وإرسال دعوة
+              </button>
+              <p id="adminFormNote" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13.5px;">تم إنشاء الحساب، وسيصل رابط تفعيل إلى البريد الإلكتروني المُدخل.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ SETTINGS ============================================================ -->
+      <section class="dash-section" id="sec-settings">
+        <div class="dash-panel">
+          <div class="dash-panel-head"><div><h2>الإعدادات العامة</h2><p>بيانات الموقع الأساسية وأوقات العمل ووضع الصيانة</p></div></div>
+          <form onsubmit="event.preventDefault(); document.getElementById('settingsFormNote').style.display='block';" style="display:flex; flex-direction:column; gap:18px;">
+            <div class="settings-grid">
+              <div class="field"><label for="siteName">اسم الموقع</label><input type="text" id="siteName" value="همم الحياة"></div>
+              <div class="field"><label for="siteTagline">الشعار النصي</label><input type="text" id="siteTagline" value="من الفكرة إلى التجربة"></div>
+              <div class="field"><label for="siteEmail">البريد الإلكتروني العام</label><input type="email" id="siteEmail" value="info@himamalhayah.sa"></div>
+              <div class="field"><label for="sitePhone">رقم الجوال العام</label><input type="tel" id="sitePhone" value="0535105327"></div>
+              <div class="field" style="grid-column:1/-1;"><label for="siteAddress">العنوان</label><input type="text" id="siteAddress" value="جدة، حي مشرفة، شارع عين الوهيط، مبنى 3654"></div>
+            </div>
+
+            <div class="toggle-row">
+              <div><div class="t-title">وضع الصيانة</div><div class="t-desc">عند التفعيل، يظهر للزوار إشعار بأن الموقع قيد التحديث، مع بقاء وصول فريق العمل متاحًا.</div></div>
+              <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div><div class="t-title">تنبيهات النماذج بالبريد الإلكتروني</div><div class="t-desc">إرسال بريد فوري لفريق خدمة العملاء عند استلام أي نموذج تواصل جديد.</div></div>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </div>
+
+            <div><button type="submit" class="btn btn-primary">حفظ التغييرات</button></div>
+            <p id="settingsFormNote" style="display:none; color:var(--turquoise-600); font-weight:600; font-size:13.5px;">تم حفظ الإعدادات بنجاح.</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============================================================ SECURITY LOG ============================================================ -->
+      <section class="dash-section" id="sec-security">
+        <div class="dash-panel">
+          <div class="dash-panel-head">
+            <div><h2>السجلات الأمنية</h2><p>سجل بجميع عمليات الدخول والتغييرات الحساسة في لوحة التحكم</p></div>
+            <button class="btn btn-outline btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15V3M7 10l5 5 5-5"/><path d="M21 21H3"/></svg>
+              تصدير السجل
+            </button>
+          </div>
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead><tr><th>الوقت</th><th>المستخدم</th><th>الإجراء</th><th>عنوان IP</th><th>الحالة</th></tr></thead>
+              <tbody>
+                <tr><td>اليوم، 10:42 ص</td><td>ريم الشهراني</td><td>تسجيل دخول ناجح</td><td>91.74.12.6</td><td><span class="log-status ok">ناجح</span></td></tr>
+                <tr><td>اليوم، 09:15 ص</td><td>نورة المطيري</td><td>محاولة دخول بجهاز جديد</td><td>178.20.4.91</td><td><span class="log-status warn">بحاجة تحقق</span></td></tr>
+                <tr><td>أمس، 6:40 م</td><td>فيصل العتيبي</td><td>تعديل صفحة «خدماتنا»</td><td>91.74.12.19</td><td><span class="log-status ok">ناجح</span></td></tr>
+                <tr><td>أمس، 4:12 م</td><td>سارة القحطاني</td><td>حفظ مسودة جديدة</td><td>91.74.8.201</td><td><span class="log-status ok">ناجح</span></td></tr>
+                <tr><td>قبل يومين</td><td>خالد العمري</td><td>3 محاولات دخول فاشلة</td><td>212.66.3.4</td><td><span class="log-status warn">تم الإيقاف مؤقتًا</span></td></tr>
+                <tr><td>قبل 4 أيام</td><td>ريم الشهراني</td><td>تغيير صلاحيات «محرر المحتوى»</td><td>91.74.12.6</td><td><span class="log-status ok">ناجح</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ INTEGRATIONS ============================================================ -->
+      <section class="dash-section" id="sec-integrations">
+        <div class="dash-panel">
+          <div class="dash-panel-head"><div><h2>إدارة التكاملات</h2><p>الخدمات الخارجية المرتبطة بموقع همم الحياة</p></div></div>
+          <div class="integration-grid">
+
+            <div class="integration-card">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="integration-body">
+                <h4>خرائط جوجل</h4>
+                <p>عرض موقع همم الحياة في صفحة التواصل</p>
+                <div class="integration-foot"><span class="status-badge status-active">متصل</span><button class="btn btn-outline btn-sm">إدارة</button></div>
+              </div>
+            </div>
+
+            <div class="integration-card">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 6l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div>
+              <div class="integration-body">
+                <h4>بريد النماذج (SMTP)</h4>
+                <p>إرسال إشعارات نماذج التواصل تلقائيًا</p>
+                <div class="integration-foot"><span class="status-badge status-active">متصل</span><button class="btn btn-outline btn-sm">إدارة</button></div>
+              </div>
+            </div>
+
+            <div class="integration-card">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+              <div class="integration-body">
+                <h4>تحليلات الموقع</h4>
+                <p>تتبّع الزيارات وسلوك المستخدمين</p>
+                <div class="integration-foot"><span class="status-badge status-active">متصل</span><button class="btn btn-outline btn-sm">إدارة</button></div>
+              </div>
+            </div>
+
+            <div class="integration-card">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+              <div class="integration-body">
+                <h4>بوابة الحجوزات والدفع</h4>
+                <p>ربط نماذج الحجز ببوابة الدفع الإلكتروني</p>
+                <div class="integration-foot"><span class="status-badge status-active">متصل</span><button class="btn btn-outline btn-sm">إدارة</button></div>
+              </div>
+            </div>
+
+            <div class="integration-card">
+              <div class="integration-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
+              <div class="integration-body">
+                <h4>حسابات التواصل الاجتماعي</h4>
+                <p>عرض تلقائي لآخر المنشورات في الموقع</p>
+                <div class="integration-foot"><span class="status-badge status-pending">بانتظار الربط</span><button class="btn btn-primary btn-sm">ربط الحساب</button></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="js/admin-dashboard.js"></script>
+</body>
+</html>
