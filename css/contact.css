@@ -69,7 +69,6 @@ p{ margin:0 0 1em; }
 .container{
   max-width:var(--container);
   margin-inline:auto;
-  padding-inline:28px;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -392,3 +391,4 @@ hr.rule{ border:0; border-top:1px solid var(--line); margin:0; }
 [data-theme="dark"] .stat .lbl{ color:#c9c1de; }
 [data-theme="dark"] .flip-front{ background:var(--mist); border-color:var(--line); }
 [data-theme="dark"] .logo-tile{ background:var(--mist); border-color:var(--line); }
+
