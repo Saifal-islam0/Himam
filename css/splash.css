@@ -1,7 +1,3 @@
-/* =========================================================
-   Splash Screen — همم الحياة
-   شاشة افتتاحية بحركة انسيابية لشعار الشركة قبل الانتقال للرئيسية
-   ========================================================= */
 
 html.splash-active,
 html.splash-active body{
@@ -20,8 +16,6 @@ html.splash-active body{
   background:var(--purple-ink);
 }
 
-/* two toned halves — echoes the brand's teal / purple duality,
-   and doubles as the "curtain" that parts on exit */
 .splash-panel{
   position:absolute;
   inset:0;
@@ -40,7 +34,6 @@ html.splash-active body{
   background:linear-gradient(150deg, var(--purple-ink) 0%, var(--turquoise-600) 130%);
 }
 
-/* soft ambient glows, purely decorative, very subtle */
 .splash-glow{
   position:absolute;
   border-radius:50%;
@@ -86,7 +79,6 @@ html.splash-active body{
   100%{ opacity:1; transform:scale(1) translateY(0); }
 }
 
-/* diagonal light sweep across the logo — a single, restrained pass */
 .splash-logo-wrap::after{
   content:"";
   position:absolute;
@@ -104,7 +96,6 @@ html.splash-active body{
   100%{ background-position:-40% 0; opacity:0; }
 }
 
-/* ===== exit transition ===== */
 .splash-screen.is-leaving .splash-panel--left{ transform:translateX(-101%); }
 .splash-screen.is-leaving .splash-panel--right{ transform:translateX(101%); }
 .splash-screen.is-leaving .splash-logo-wrap{
@@ -114,7 +105,6 @@ html.splash-active body{
 }
 .splash-screen.is-hidden{ display:none; }
 
-/* ===== reduced motion: respect user preference, keep it brief ===== */
 .splash-screen.reduced,
 .splash-screen.reduced *{
   animation:none !important;

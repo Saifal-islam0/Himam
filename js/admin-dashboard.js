@@ -1,15 +1,3 @@
-/* ============================================================
-   Permission matrix data
-   Source of truth for the roles brief:
-   - Super Admin: full access to everything
-   - Site Manager: pages/content, services/events, forms/bookings,
-     reports — but can NEVER delete the Super Admin or change site
-     ownership, regardless of other grants.
-   - Content Editor: create/edit content, upload images, save
-     drafts — publishing is conditional on approval unless granted.
-   - Customer Service: view/update contact requests + notes only,
-     no access to site pages or settings.
-   ============================================================ */
 const PERMISSIONS_MATRIX = [
   { label: "إدارة المستخدمين",                     super: "yes", manager: "no",  editor: "no",  support: "no"  },
   { label: "إدارة الصلاحيات",                       super: "yes", manager: "no",  editor: "no",  support: "no"  },
@@ -55,9 +43,7 @@ function renderMatrix(){
   `).join('');
 }
 
-/* ============================================================
-   Section navigation
-   ============================================================ */
+
 const SECTION_META = {
   overview:     { title: "نظرة عامة",            sub: "ملخص أداء الموقع اليوم" },
   pages:        { title: "صفحات الموقع",         sub: "إدارة محتوى وحالة كل صفحة في الموقع" },
@@ -84,7 +70,6 @@ function dashNavigate(sectionId){
     document.getElementById('topbarSub').textContent = meta.sub;
   }
 
-  // close mobile sidebar after navigating
   document.getElementById('dashSidebar').classList.remove('open');
   document.getElementById('sidebarBackdrop').classList.remove('show');
 
@@ -98,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => dashNavigate(btn.getAttribute('data-section')));
   });
 
-  // mobile sidebar toggle
   const sidebar = document.getElementById('dashSidebar');
   const backdrop = document.getElementById('sidebarBackdrop');
   const mobileToggle = document.getElementById('mobileSidebarToggle');
@@ -115,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // theme toggle (persisted, shared with the rest of the site)
   const themeBtn = document.getElementById('themeToggle');
   if(themeBtn){
     themeBtn.addEventListener('click', () => {
@@ -130,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // lang switch (visual only in this dashboard preview)
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -138,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // users table filter chips (visual only)
   document.querySelectorAll('#sec-users .chip').forEach(chip => {
     chip.addEventListener('click', () => {
       document.querySelectorAll('#sec-users .chip').forEach(c => c.classList.remove('active'));
@@ -146,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // site pages: toggle inline quick-edit panel
   document.querySelectorAll('.page-edit-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const editor = document.getElementById(btn.dataset.target);
@@ -154,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // site pages: fake-save each quick-edit form
   document.querySelectorAll('.page-editor-form').forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -163,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // publish-permission toggle updates the matrix's "conditional" cell live
   const publishToggle = document.getElementById('publishPermissionToggle');
   if(publishToggle){
     publishToggle.addEventListener('change', () => {

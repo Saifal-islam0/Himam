@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   }
 
-  // theme toggle (dark / light)
   const themeBtn = document.querySelector('.theme-toggle');
   const root = document.documentElement;
   if (themeBtn) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // language switch (AR / EN)
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));

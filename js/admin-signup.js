@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   }
 
-  // theme toggle (dark / light)
   const themeBtn = document.querySelector('.theme-toggle');
   const root = document.documentElement;
   if (themeBtn) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // language switch (AR / EN)
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -30,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // password show/hide toggles
   document.querySelectorAll('.toggle-pass').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
@@ -42,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ===== multi-step signup wizard =====
   const wizardForm = document.getElementById('adminSignupForm');
   if (wizardForm) {
     const steps = Array.from(wizardForm.querySelectorAll('.form-step'));
@@ -80,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // simple client-side check: passwords match
   const form = document.getElementById('adminSignupForm');
   if (form) {
     form.addEventListener('submit', (e) => {

@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   }
 
-  // theme toggle (dark / light)
   const themeBtn = document.querySelector('.theme-toggle');
   const root = document.documentElement;
   if (themeBtn) {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // language switch (AR / EN)
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -30,13 +28,91 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // sector cards: tap-to-flip on touch devices (hover already handles desktop)
   const sectorCards = document.querySelectorAll('.sector-card');
   sectorCards.forEach(card => {
     card.addEventListener('click', () => {
       const wasFlipped = card.classList.contains('flipped');
       sectorCards.forEach(c => c.classList.remove('flipped'));
       if (!wasFlipped) card.classList.add('flipped');
+    });
+  });
+
+  const sectorsScroll = document.querySelector('.sectors-scroll');
+  if (sectorsScroll) {
+    let autoTimer = null;
+
+    const getStep = () => {
+      const card = sectorsScroll.querySelector('.sector-card');
+      if (!card) return 320;
+      const gap = parseFloat(getComputedStyle(sectorsScroll).columnGap || getComputedStyle(sectorsScroll).gap || 24);
+      return card.getBoundingClientRect().width + gap;
+    };
+
+    const atEnd = () => {
+      const max = sectorsScroll.scrollWidth - sectorsScroll.clientWidth;
+      return Math.abs(sectorsScroll.scrollLeft) >= max - 4;
+    };
+    const atStart = () => Math.abs(sectorsScroll.scrollLeft) <= 4;
+
+    function stepForward() {
+      if (atEnd()) {
+        sectorsScroll.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        sectorsScroll.scrollBy({ left: -getStep(), behavior: 'smooth' });
+      }
+    }
+    function stepBack() {
+      if (atStart()) {
+        sectorsScroll.scrollTo({ left: -(sectorsScroll.scrollWidth), behavior: 'smooth' });
+      } else {
+        sectorsScroll.scrollBy({ left: getStep(), behavior: 'smooth' });
+      }
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(stepForward, 3000);
+    }
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    sectorsScroll.addEventListener('mouseenter', stopAuto);
+    sectorsScroll.addEventListener('mouseleave', startAuto);
+    sectorsScroll.addEventListener('touchstart', stopAuto, { passive: true });
+
+    document.querySelectorAll('.sectors-arrow').forEach(btn => {
+      btn.addEventListener('click', () => {
+        stopAuto();
+        if (btn.dataset.dir === 'prev') stepBack(); else stepForward();
+        startAuto();
+      });
+    });
+
+    startAuto();
+  }
+
+  function loadVideoEmbed(container) {
+    const videoId = container.dataset.videoId;
+    if (!videoId || container.dataset.loaded === '1') return;
+    container.dataset.loaded = '1';
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+    iframe.title = container.getAttribute('aria-label') || 'فيديو';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    container.innerHTML = '';
+    container.appendChild(iframe);
+  }
+  document.querySelectorAll('[data-video-id]').forEach(el => {
+    el.addEventListener('click', () => loadVideoEmbed(el));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        loadVideoEmbed(el);
+      }
     });
   });
 
