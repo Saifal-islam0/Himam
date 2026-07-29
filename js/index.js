@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // hero background video: force highest available playback quality
+  (function () {
+    const heroFrame = document.getElementById('heroYtBg');
+    if (!heroFrame) return;
+
+    function forceHD(player) {
+      try {
+        const levels = player.getAvailableQualityLevels ? player.getAvailableQualityLevels() : [];
+        const best = levels && levels.length ? levels[0] : 'hd1080';
+        player.setPlaybackQuality(best);
+      } catch (e) {}
+    }
+
+    window.onYouTubeIframeAPIReady = function () {
+      const heroPlayer = new YT.Player('heroYtBg', {
+        events: {
+          onReady: (e) => {
+            forceHD(e.target);
+            // re-assert periodically in case YouTube's auto bitrate adjustment lowers it
+            setInterval(() => forceHD(e.target), 6000);
+          },
+          onStateChange: (e) => {
+            if (e.data === YT.PlayerState.PLAYING) forceHD(e.target);
+          }
+        }
+      });
+    };
+
+    if (!window.YT) {
+      const ytScript = document.createElement('script');
+      ytScript.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(ytScript);
+    }
+  })();
+
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (toggle && links) {
