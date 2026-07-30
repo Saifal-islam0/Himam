@@ -270,7 +270,8 @@ section{ padding-block:110px; position:relative; }
   display:grid; grid-template-columns:repeat(6,1fr); gap:18px; position:relative;
 }
 @media (max-width:1000px){ .process-list{ grid-template-columns:repeat(3,1fr);} .process-path{display:none;} }
-@media (max-width:600px){ .process-list{ grid-template-columns:1fr; } }
+@media (max-width:600px){ .process-list{ grid-template-columns:1fr; }   .container{padding-inline: 28px !important;}
+ }
 .process-step{ text-align:center; }
 .process-step .badge{
   width:64px; height:64px; border-radius:50%;

@@ -379,6 +379,7 @@ section{ padding-block:110px; position:relative; }
   .brand-tile{ width:120px; height:120px; border-radius:26px; padding:20px; }
   .brand-lockup{ gap:18px; }
   .brand-lockup-divider{ height:64px; }
+  .container{padding-inline: 28px !important;}
 }
 
 .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
